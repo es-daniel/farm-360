@@ -1,0 +1,9 @@
+<mat-card [ngClass]="['farm-summary-card', 'farm-summary-card--' + color]">
+  <mat-card-content>
+    <mat-icon svgIcon="{{ icon }}"></mat-icon>
+    <div class="summary">
+      <span class="summary__quantity">{{ quantity }}</span>
+      <h3 class="summary__description">{{ description }}</h3>
+    </div>
+  </mat-card-content>
+</mat-card>

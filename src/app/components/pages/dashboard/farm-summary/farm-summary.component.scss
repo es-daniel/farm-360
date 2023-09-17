@@ -1,0 +1,40 @@
+@import 'mixins';
+
+$items-margin: 1rem;
+
+.farm-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: $items-margin;
+    }
+  }
+
+  @include medium-devices {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &__item {
+      flex: 1 1 calc(50% - $items-margin);
+
+      &:first-child{
+        margin-right: $items-margin;
+      }
+    }
+  }
+
+  @include large-devices {
+    flex-direction: row;
+
+    &__item {
+      flex: 1 1 0px;
+
+      &:not(:last-child) {
+        margin-right: $items-margin;
+      }
+    }
+  }
+}

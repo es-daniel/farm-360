@@ -4,7 +4,8 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["./src/app/components/*"],
-      "@services/*": ["./src/app/services/*"]
+      "@services/*": ["./src/app/services/*"],
+      "@styles/*": ["./src/styles/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

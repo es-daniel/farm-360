@@ -1,0 +1,27 @@
+@import 'variables';
+
+// Breakpoints
+@mixin small-devices {
+  @media (min-width: $small-device-bp) {
+    @content;
+  }
+}
+
+@mixin medium-devices {
+  @media (min-width: $medium-device-bp) {
+    @content;
+  }
+}
+
+@mixin large-devices {
+  @media (min-width: $large-device-bp) {
+    @content;
+  }
+}
+
+// Icons
+@mixin md-icon {
+  height: 5rem;
+  width: 5rem;
+  font-size: 5rem;
+}

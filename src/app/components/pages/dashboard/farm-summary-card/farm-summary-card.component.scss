@@ -1,0 +1,70 @@
+@import 'variables';
+@import 'mixins';
+
+.farm-summary-card {
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+
+    .summary {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      &__quantity {
+        font-size: 2rem;
+      }
+    }
+  }
+  mat-icon {
+    @include md-icon;
+    border-radius: 50%;
+    padding: 0.5rem;
+    color: white;
+  }
+
+  &--green {
+    background-color: $green-100;
+    border-bottom: 0.5rem $green-900 solid;
+
+    mat-icon {
+      background-color: $green-900;
+    }
+
+    .summary {
+      &__quantity {
+        color: $green-900;
+      }
+    }
+  }
+
+  &--light-green {
+    background-color: $light-green-100;
+    border-bottom: 0.5rem $light-green-900 solid;
+
+    mat-icon {
+      background-color: $light-green-900;
+    }
+
+    .summary {
+      &__quantity {
+        color: $light-green-900;
+      }
+    }
+  }
+
+  &--lime {
+    background-color: $lime-100;
+    border-bottom: 0.5rem $lime-900 solid;
+
+    mat-icon {
+      background-color: $lime-900;
+    }
+
+    .summary {
+      &__quantity {
+        color: $lime-900;
+      }
+    }
+  }
+}

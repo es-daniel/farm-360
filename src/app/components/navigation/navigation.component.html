@@ -6,11 +6,40 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar><b>Daniel Elizondo </b></mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Inicio</a>
-      <a mat-list-item href="#">Fincas</a>
-      <a mat-list-item href="#">Perfil</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="router-link-active">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <p>Inicio</p>
+      </a>
+
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/farms']" routerLinkActive="router-link-active">
+        <mat-icon matListItemIcon>terrain</mat-icon>
+        <p>Fincas</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/cattle']" routerLinkActive="router-link-active">
+        <mat-icon matListItemIcon>list</mat-icon>
+        <p>Ganado</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/calendar']" routerLinkActive="router-link-active">
+        <mat-icon matListItemIcon>calendar_today</mat-icon>
+        <p>Calendario</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/profile']">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <p>Perfil</p>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/logout']">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <p>Salir</p>
+      </a>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,6 +49,8 @@
       </button>
       <span>Farm360</span>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

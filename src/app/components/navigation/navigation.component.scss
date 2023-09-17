@@ -3,15 +3,31 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 12.5rem;
+  background-color: #00695c;
+  color: white;
 }
 
 .sidenav .mat-toolbar {
   background: inherit;
+  color: inherit;
 }
 
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.mdc-list {
+  padding-top: 0;
+
+  .mat-icon,
+  p {
+    color: white;
+  }
+}
+
+main {
+  padding: 2rem 1rem;
 }

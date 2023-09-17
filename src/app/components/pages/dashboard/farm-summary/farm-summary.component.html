@@ -1,0 +1,9 @@
+<section class="farm-summary">
+  <app-farm-summary-card
+    *ngFor="let item of summaryList"
+    class="farm-summary__item"
+    [color]="item.color"
+    [icon]="item.icon"
+    [quantity]="item.quantity"
+    [description]="item.description" />
+</section>
