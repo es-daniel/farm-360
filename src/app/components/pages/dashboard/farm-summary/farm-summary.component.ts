@@ -29,7 +29,7 @@ const mockList: SummaryListItem[] = [
     color: AppColor.LIME,
     icon: CUSTOM_ICONS.PREGNANT_COW.LABEL,
     quantity: 2,
-    description: 'Vacas printas',
+    description: 'Vacas prontas',
   },
 ];
 
