@@ -1,0 +1,28 @@
+@import 'mixins';
+
+.dashboard-menu {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1.5rem;
+
+  @include medium-devices {
+    grid-template-columns: auto auto auto;
+  }
+
+  @include large-devices {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+.dashboard-menu-option {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  min-height: 12.5rem;
+
+  .mat-icon{
+    height: 100px;
+    width: 100px;
+  }
+}
