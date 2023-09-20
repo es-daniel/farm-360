@@ -8,6 +8,7 @@ $large-device-bp: 992px;
 
 // Colors
 $primary: mat.get-color-from-palette(customTheme.$farm-360-primary, 600);
+$primary-50: mat.get-color-from-palette(customTheme.$farm-360-primary, 50);
 $primary-800: mat.get-color-from-palette(customTheme.$farm-360-primary, 800);
 $primary-900: mat.get-color-from-palette(customTheme.$farm-360-primary, 900);
 $primary-A700: mat.get-color-from-palette(customTheme.$farm-360-primary, A700);
