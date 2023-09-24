@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyCzJpkE88rx9QgKbw5YLXflxVupJPxGkBA',
-    authDomain: 'finca-360.firebaseapp.com',
-    projectId: 'finca-360',
-    storageBucket: 'finca-360.appspot.com',
-    messagingSenderId: '376210354445',
-    appId: '1:376210354445:web:586caf0073e0331d70c044',
+    apiKey: 'AIzaSyCMh0iFrkE3A14jkQiJfMZpeRi3YAJMwmo',
+    authDomain: 'finca360-fa40e.firebaseapp.com',
+    projectId: 'finca360-fa40e',
+    storageBucket: 'finca360-fa40e.appspot.com',
+    messagingSenderId: '163381397062',
+    appId: '1:163381397062:web:4d8b5236e347f1a8786c47',
   },
 };
