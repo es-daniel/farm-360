@@ -1,0 +1,28 @@
+<div class="form-header">
+  <a
+    class="form-header__go-back"
+    mat-icon-button
+    routerLink="/farms"
+    matTooltip="Regresar"
+    matTooltipPosition="above"
+    aria-label="Regresar al listado de fincas">
+    <mat-icon>arrow_back</mat-icon>
+  </a>
+  <h2 class="form-header__title">{{ formTitle }}</h2>
+</div>
+
+<form [formGroup]="farmForm" class="farm-form" (ngSubmit)="onSubmitFarm()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput placeholder="La Lucha" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput placeholder="Ubicanda en..." rows="3" formControlName="description"></textarea>
+  </mat-form-field>
+
+  <app-file-upload placeholder="Subir imagen de la finca" />
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid">Guardar</button>
+</form>

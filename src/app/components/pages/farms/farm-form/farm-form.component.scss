@@ -1,0 +1,42 @@
+@import 'mixins';
+@import 'variables';
+
+$form-border-radius: 0.25rem;
+
+:host {
+  border-radius: 5px;
+  width: 100%;
+
+  @include large-devices {
+    width: 50rem;
+  }
+}
+
+.form-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  background-color: $primary-900;
+  color: white;
+
+  border-top-right-radius: $form-border-radius;
+  border-top-left-radius: $form-border-radius;
+
+  &__title {
+    align-self: center;
+    text-transform: capitalize;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.farm-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2rem 1rem;
+  border: 0.5px solid $accent;
+  border-bottom-left-radius: $form-border-radius;
+  border-bottom-right-radius: $form-border-radius;
+
+}

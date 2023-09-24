@@ -1,0 +1,5 @@
+<mat-form-field>
+  <input matInput readonly [value]="getFilesName()" [placeholder]="placeholder" (click)="fileInput.click()" />
+  <mat-icon matSuffix matTooltip="Choose file(s)..." (click)="fileInput.click()"> attach_file</mat-icon>
+</mat-form-field>
+<input hidden type="file" (change)="onSelectFiles($event)" #fileInput [multiple]="multipleFilesAccepted" />

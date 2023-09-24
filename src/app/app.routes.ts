@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('@components/pages/dashboard/dashboard.component').then(m => m.DashboardComponent),
   },
   {
+    path: 'farms',
+    loadChildren: () => import('@components/pages/farms/farms.routes').then(m => m.FarmsRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
