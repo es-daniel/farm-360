@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-file-upload',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatIconModule, MatInputModule],
+  imports: [CommonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatTooltipModule],
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
 })
 export class FileUploadComponent {
   @Input() placeholder = 'Subir archivos';
   @Input() multipleFilesAccepted = false;
+  @Input() filesAccepted: string;
   @Output() uploadFiles: EventEmitter<FileList> = new EventEmitter<FileList>();
 
   files: FileList;

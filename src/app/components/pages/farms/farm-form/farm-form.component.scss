@@ -13,9 +13,9 @@ $form-border-radius: 0.25rem;
 }
 
 .form-header {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0 auto;
+  display: flex;
+  position: relative;
+  align-items: center;
   background-color: $primary-900;
   color: white;
 
@@ -23,10 +23,12 @@ $form-border-radius: 0.25rem;
   border-top-left-radius: $form-border-radius;
 
   &__title {
-    align-self: center;
     text-transform: capitalize;
-    text-align: center;
     margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -38,5 +40,4 @@ $form-border-radius: 0.25rem;
   border: 0.5px solid $accent;
   border-bottom-left-radius: $form-border-radius;
   border-bottom-right-radius: $form-border-radius;
-
 }

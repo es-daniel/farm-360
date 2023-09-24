@@ -22,7 +22,10 @@
     <textarea matInput placeholder="Ubicanda en..." rows="3" formControlName="description"></textarea>
   </mat-form-field>
 
-  <app-file-upload placeholder="Subir imagen de la finca" />
+  <app-file-upload placeholder="Subir imagen de la finca" filesAccepted="image/*" />
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid">Guardar</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid">
+    <mat-icon>save</mat-icon>
+    Guardar
+  </button>
 </form>
