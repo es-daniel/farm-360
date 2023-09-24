@@ -1,5 +1,5 @@
 export const CUSTOM_ICONS = Object.freeze({
-  MAIN_LOGO: { LABEL: 'main-logo', URL: './assets/icons/logo-2.svg' },
+  MAIN_LOGO: { LABEL: 'main-logo', URL: './assets/icons/logo.svg' },
   ADULT_COW: { LABEL: 'adult-cow', URL: './assets/icons/adult-cow-filled.svg' },
   BABY_COW: { LABEL: 'baby-cow', URL: './assets/icons/baby-cow-filled.svg' },
   PREGNANT_COW: { LABEL: 'pregnant-cow', URL: './assets/icons/pregnant-cow.svg' },
