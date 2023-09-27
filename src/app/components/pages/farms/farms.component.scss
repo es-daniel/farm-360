@@ -1,5 +1,44 @@
+@import 'mixins';
+
+.farms-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  grid-gap: 1rem;
+
+  @include medium-devices {
+    grid-template-columns: repeat(auto-fill, minmax(33.33%, 1fr));
+  }
+
+  @include large-devices {
+    grid-template-columns: repeat(auto-fill, minmax(calc(25% - 3rem), 1fr));
+  }
+
+  .farm-card {
+
+    &__title {
+      margin-top: 0;
+    }
+
+    &__content {
+      min-height: 4rem;
+    }
+
+    &__actions {
+      margin-top: auto;
+      &--view {
+        width: 100%;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
 .mdc-fab {
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   right: 1rem;
+}
+
+.loading-farms-spinner {
+  @include fixed-centered-spinner;
 }

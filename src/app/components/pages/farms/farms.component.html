@@ -1,6 +1,26 @@
-<p>farms works!</p>
-<a [routerLink]="['/farms/edit/1']">Edit</a>
+<ng-container *ngIf="farms$ | async as farms; else loading">
+  <section class="farms-list">
+    <mat-card class="farm-card" *ngFor="let farm of farms">
+      <mat-card-header>
+        <h3 class="farm-card__title">{{ farm.name }}</h3>
+      </mat-card-header>
+      <img mat-card-image [src]="farm.imageUrl || defaultFarmImage" alt="Photo of a Shiba Inu" />
+      <mat-card-content class="farm-card__content">
+        <p>
+          {{ farm.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="farm-card__actions">
+        <a class="farm-card__actions--view" mat-stroked-button color="primary" [routerLink]="['/farms/edit', farm.id]">Ver</a>
+      </mat-card-actions>
+    </mat-card>
+  </section>
 
-<a [routerLink]="['/farms/create']" mat-fab color="accent" aria-label="Example icon button with a delete icon">
-  <mat-icon>add</mat-icon>
-</a>
+  <a [routerLink]="['/farms/create']" mat-fab color="accent" aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </a>
+</ng-container>
+
+<ng-template #loading>
+  <mat-spinner class="loading-farms-spinner" diameter="100"></mat-spinner>
+</ng-template>

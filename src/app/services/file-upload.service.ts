@@ -1,16 +1,17 @@
-import { UploadTaskSnapshot } from './../../../node_modules/@firebase/storage-types/index.d';
 import { Injectable, inject } from '@angular/core';
-import { Storage } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileUploadService {
-  private fbStorage = inject(Storage);
+  private readonly _storage: Storage = inject(Storage);
 
-  async pushFileToStorage(filePath: string, file: File): Promise<UploadTaskSnapshot> {
-    const storageRef = this.fbStorage.ref(filePath);
+  async pushFileToStorage(filePath: string, file: File): Promise<string> {
+    const storageRef = ref(this._storage, filePath);
 
-    return storageRef.put(file);
+    await uploadBytes(storageRef, file);
+
+    return getDownloadURL(storageRef);
   }
 }

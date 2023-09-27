@@ -24,8 +24,9 @@
 
   <app-file-upload formControlName="image" placeholder="Subir imagen de la finca" filesAccepted="image/*" />
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid">
-    <mat-icon>save</mat-icon>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid || (isFarmsLoading$ | async)">
+    <mat-icon *ngIf="(isFarmsLoading$ | async) === false">save</mat-icon>
     Guardar
+    <mat-icon *ngIf="isFarmsLoading$ | async"><mat-spinner diameter="18"></mat-spinner></mat-icon>
   </button>
 </form>

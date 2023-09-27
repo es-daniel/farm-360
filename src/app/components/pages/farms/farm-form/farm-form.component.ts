@@ -1,3 +1,4 @@
+import { FarmsService } from '@services/farms.service';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
@@ -6,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterLink } from '@angular/router';
 import { FileUploadComponent } from '@components/shared/file-upload/file-upload.component';
 import Farm from 'src/app/interfaces/farm';
@@ -24,12 +26,16 @@ import Farm from 'src/app/interfaces/farm';
     RouterLink,
     MatTooltipModule,
     FileUploadComponent,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './farm-form.component.html',
   styleUrls: ['./farm-form.component.scss'],
 })
 export class FarmFormComponent implements OnInit {
-  formBuilder = inject(FormBuilder);
+  private readonly _formBuilder = inject(FormBuilder);
+  private readonly _farmsService = inject(FarmsService);
+
+  public isFarmsLoading$ = this._farmsService.isLoading();
 
   @Input({ required: true }) formTitle!: string;
   @Input() farm: Farm;
@@ -39,7 +45,7 @@ export class FarmFormComponent implements OnInit {
   farmForm!: FormGroup;
 
   ngOnInit(): void {
-    this.farmForm = this.formBuilder.group({
+    this.farmForm = this._formBuilder.group({
       name: new FormControl('', Validators.required),
       description: new FormControl(''),
       image: new FormControl(null),
