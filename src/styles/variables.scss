@@ -1,9 +1,9 @@
-@use "@angular/material" as mat;
-@use "./custom-theme.scss" as customTheme;
+@use '@angular/material' as mat;
+@use './custom-theme.scss' as customTheme;
 
 // Breakpoints
 $small-device-bp: 600px;
-$medium-device-bp:  768px;
+$medium-device-bp: 768px;
 $large-device-bp: 992px;
 
 // Colors
@@ -15,15 +15,18 @@ $primary-A700: mat.get-color-from-palette(customTheme.$farm-360-primary, A700);
 
 $accent: mat.get-color-from-palette(customTheme.$farm-360-accent, 600);
 
-
 // From Green palette
-$green-100: #C8E6C9;
-$green-900: #1B5E20;
+$green-100: #c8e6c9;
+$green-900: #1b5e20;
 
 // From Lime palette
-$light-green-100: #DCEDC8;
-$light-green-900: #33691E;
+$light-green-100: #dcedc8;
+$light-green-900: #33691e;
 
 // From Lime palette
-$lime-100: #F0F4C3;
+$lime-100: #f0f4c3;
 $lime-900: #827717;
+
+// Toolbar
+$small-device-toolbar-height: 3.5rem;
+$medium-device-toolbar-height: 4rem;

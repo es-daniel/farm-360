@@ -11,4 +11,5 @@ export const CUSTOM_ICONS = Object.freeze({
   MONEY_TRANSFER: { LABEL: 'money-transfer', URL: './assets/icons/money-transfer-colored.svg' },
   LOGOUT: { LABEL: 'logout', URL: './assets/icons/log-out.svg' },
   PROFIT: { LABEL: 'profit', URL: './assets/icons/profit.svg' },
+  EMPTY_FOLDER: { LABEL: 'empty-folder', URL: './assets/icons/empty-folder.svg' },
 });

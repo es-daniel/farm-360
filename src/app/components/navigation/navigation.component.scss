@@ -1,6 +1,9 @@
 @import 'variables';
 @import 'mixins';
 
+$main-top-bottom-padding: 2rem;
+$main-left-right-padding: 1rem;
+
 .sidenav-container {
   height: 100%;
 }
@@ -40,8 +43,14 @@
 }
 
 main {
-  padding: 2rem 1rem;
-  // background-color: $primary-50;
+  display: flex;
+  flex-direction: column;
+  padding: $main-top-bottom-padding $main-left-right-padding;
+  min-height: calc(100% - $small-device-toolbar-height - (2 * $main-top-bottom-padding));
+
+  @include medium-devices {
+    min-height: calc(100% - $medium-device-toolbar-height - (2 * $main-top-bottom-padding));
+  }
 }
 
 .toolbar-spacer {

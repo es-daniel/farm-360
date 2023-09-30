@@ -9,11 +9,12 @@ import { MatCardModule } from '@angular/material/card';
 
 import { FarmsService } from '@services/farms.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmptyStateComponent } from '@components/shared/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-farms',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatCardModule, MatProgressSpinnerModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, EmptyStateComponent],
   templateUrl: './farms.component.html',
   styleUrls: ['./farms.component.scss'],
 })

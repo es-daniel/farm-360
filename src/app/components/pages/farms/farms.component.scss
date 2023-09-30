@@ -1,5 +1,11 @@
 @import 'mixins';
 
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .farms-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
@@ -14,7 +20,6 @@
   }
 
   .farm-card {
-
     &__title {
       margin-top: 0;
     }
