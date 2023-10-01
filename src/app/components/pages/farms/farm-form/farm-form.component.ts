@@ -48,9 +48,12 @@ export class FarmFormComponent implements OnInit {
       name: new FormControl('', Validators.required),
       location: new FormControl(''),
       image: new FormControl(null),
+      imagePath: new FormControl(null),
+      imageUrl: new FormControl(null),
     });
 
     if (this.farm) {
+      this.farmForm.addControl('id', new FormControl());
       this.farmForm?.patchValue(this.farm);
     }
   }

@@ -13,6 +13,8 @@ import {
   getDoc,
   doc,
   deleteDoc,
+  updateDoc,
+  UpdateData,
 } from '@angular/fire/firestore';
 import { FileUploadService } from '@services/file-upload.service';
 import { BehaviorSubject, Observable, ReplaySubject, Subject, from, map } from 'rxjs';
@@ -74,10 +76,34 @@ export class FarmsService implements OnDestroy {
         farm.imageUrl = await this._fileUploadService.pushFileToStorage(farm.imagePath, farm.image);
       }
 
-      delete farm.image; // we don;t need image file on fire store
+      delete farm.image; // we don't need image file on fire store
       await addDoc(this.farmsCollection, farm);
     } catch (error) {
       console.error('An error happen while creating new farm: ', JSON.stringify(error));
+    } finally {
+      this.loading$.next(false);
+    }
+  }
+
+  public async updateFarm(farm: Farm): Promise<void> {
+    if (!farm?.id) return;
+
+    try {
+      this.loading$.next(true);
+      const farmRef = doc(this._firestore, this.FARMS_COLLECTION, farm.id);
+
+      if (farm.image) {
+        // Create new farm image or update existing one
+        farm.imagePath = farm.imagePath || `${this.FARMS_COLLECTION}/${uuidv4()}`;
+        farm.imageUrl = await this._fileUploadService.pushFileToStorage(farm.imagePath, farm.image);
+      }
+
+      delete farm.image;
+      delete farm.id;
+
+      await updateDoc(farmRef, farm as UpdateData<Farm>);
+    } catch (error) {
+      console.error('An error happen while updating a farm: ', JSON.stringify(error));
     } finally {
       this.loading$.next(false);
     }
@@ -87,9 +113,7 @@ export class FarmsService implements OnDestroy {
     try {
       const currentFarm = this.selectedFarm$.getValue();
 
-      if (!currentFarm) {
-        return;
-      }
+      if (!currentFarm) return;
 
       if (currentFarm.id) {
         this.loading$.next(true);

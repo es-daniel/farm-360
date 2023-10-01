@@ -14,9 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-farm.component.scss'],
 })
 export class CreateFarmComponent {
-  _farmsService = inject(FarmsService);
-  _snackBar = inject(MatSnackBar);
-  _router = inject(Router);
+  private readonly _farmsService = inject(FarmsService);
+  private readonly _snackBar = inject(MatSnackBar);
+  private readonly _router = inject(Router);
 
   async saveNewFarm(farm: Farm) {
     await this._farmsService.createNewFarm(farm);

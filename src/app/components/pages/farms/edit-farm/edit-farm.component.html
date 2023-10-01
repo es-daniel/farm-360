@@ -1,4 +1,8 @@
-<app-farm-form *ngIf="farm$ | async as farm; else loading" formTitle="Editar Finca" [farm]="farm" (submitFarm)="saveFarmChanges($event)" />
+<app-farm-form
+  *ngIf="farm$ | async as farm; else loading"
+  formTitle="Editar Finca"
+  [farm]="farm"
+  (submitFarm)="saveFarmChanges($event)"></app-farm-form>
 <ng-template #loading>
   <mat-spinner class="loading-farm-spinner" diameter="100"></mat-spinner>
 </ng-template>
