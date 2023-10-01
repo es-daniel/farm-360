@@ -47,7 +47,7 @@ export class FarmFormComponent implements OnInit {
   ngOnInit(): void {
     this.farmForm = this._formBuilder.group({
       name: new FormControl('', Validators.required),
-      description: new FormControl(''),
+      location: new FormControl(''),
       image: new FormControl(null),
     });
 

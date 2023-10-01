@@ -18,11 +18,11 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <mat-label>Descripción</mat-label>
-    <textarea matInput placeholder="Ubicanda en..." rows="3" formControlName="description"></textarea>
+    <mat-label>Ubicación</mat-label>
+    <input matInput placeholder="La Lucha, Potrero Grande" formControlName="location" />
   </mat-form-field>
 
-  <app-file-upload formControlName="image" placeholder="Subir imagen de la finca" filesAccepted="image/*" />
+  <app-file-upload formControlName="image" placeholder="Imagen de la finca" filesAccepted="image/*" />
 
   <button mat-raised-button color="primary" type="submit" [disabled]="!farmForm.valid || (isFarmsLoading$ | async)">
     <mat-icon *ngIf="(isFarmsLoading$ | async) === false">save</mat-icon>

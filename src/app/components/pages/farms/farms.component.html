@@ -2,13 +2,17 @@
   <ng-container *ngIf="farms.length > 0; else emptyState">
     <section class="farms-list">
       <mat-card class="farm-card" *ngFor="let farm of farms">
-        <mat-card-header>
-          <h3 class="farm-card__title">{{ farm.name }}</h3>
+        <mat-card-header class="farm-card__header">
+          <h3 mat-card-title class="farm-card__title">{{ farm.name }}</h3>
+          <button (click)="openFarmOptions(farm)" class="farm-card__options-button" mat-icon-button aria-label="Botón de opciones">
+            <mat-icon>more_vert</mat-icon>
+          </button>
         </mat-card-header>
-        <img mat-card-image [src]="farm.imageUrl || defaultFarmImage" alt="Photo of a Shiba Inu" />
+        <img class="farm-card__image" mat-card-image [src]="farm.imageUrl || defaultFarmImage" alt="Imagen de la finca" loading="lazy" />
         <mat-card-content class="farm-card__content">
-          <p>
-            {{ farm.description }}
+          <p class="farm-card__content__location">
+            <mat-icon>map</mat-icon>
+            {{ farm.location || 'Sin ubicación.' }}
           </p>
         </mat-card-content>
         <mat-card-actions class="farm-card__actions">
