@@ -9,11 +9,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBottomSheet, MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { EmptyStateComponent } from '@components/shared/empty-state/empty-state.component';
 
 import Farm from '@interfaces/farm';
 import { FarmsService } from '@services/farms.service';
 import { FarmOptionsComponent } from './farm-options/farm-options.component';
+import { EmptyStateComponent } from '@components/shared/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-farms',
@@ -37,10 +37,9 @@ export class FarmsComponent {
   private readonly _bottomSheet = inject(MatBottomSheet);
 
   public farms$: Observable<Farm[]> = this._farmsService.getFarms();
-  public defaultFarmImage = '../../../../assets/icons/barn-1.svg';
+  public defaultFarmImage = './assets/icons/barn-1.svg';
 
-  openFarmOptions(farm: Farm): void {
-    console.log(farm);
-    this._bottomSheet.open(FarmOptionsComponent);
+  openFarmOptions(farmId: string): void {
+    this._bottomSheet.open(FarmOptionsComponent, { data: farmId, panelClass: 'custom-bottom-sheet' });
   }
 }

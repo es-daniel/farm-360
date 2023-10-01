@@ -1,8 +1,11 @@
 <mat-action-list>
-  <mat-divider />
-  <button mat-list-item (click)="deleteFarm()">
+  <button mat-list-item (click)="selectDeleteFarm()" [disabled]="isDeletingFarm">
     <mat-icon matListItemIcon>delete</mat-icon>
     Eliminar
   </button>
   <mat-divider />
+  <button mat-list-item>
+    <mat-icon matListItemIcon>visibility</mat-icon>
+    Ver vacas en la finca
+  </button>
 </mat-action-list>

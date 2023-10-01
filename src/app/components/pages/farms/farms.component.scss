@@ -13,7 +13,8 @@ $farms-list-items-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   grid-gap: $farms-list-items-gap;
 
-  @include medium-devices {
+  
+  @include small-devices {
     grid-template-columns: repeat(auto-fill, minmax(calc(50% - $farms-list-items-gap), 1fr));
   }
 
@@ -64,6 +65,10 @@ $farms-list-items-gap: 1rem;
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+}
+
+.mat-bottom-sheet-container {
+  transform: translateX(100px);
 }
 
 .loading-farms-spinner {

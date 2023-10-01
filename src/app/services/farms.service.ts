@@ -12,6 +12,7 @@ import {
   DocumentData,
   getDoc,
   doc,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { FileUploadService } from '@services/file-upload.service';
 import { Observable, ReplaySubject, Subject, from, map } from 'rxjs';
@@ -40,6 +41,10 @@ export class FarmsService implements OnDestroy {
     this.unsubscribeFarmsSnapshot();
   }
 
+  isLoading(): Observable<boolean> {
+    return this.loading$;
+  }
+
   getFarms(): Observable<Farm[]> {
     return this.farmsList$;
   }
@@ -48,10 +53,6 @@ export class FarmsService implements OnDestroy {
     return from(getDoc(doc(this._firestore, this.FARMS_COLLECTION, id))).pipe(
       map(docSnapshot => ({ id: docSnapshot.id, ...docSnapshot.data() }) as Farm)
     );
-  }
-
-  isLoading(): Observable<boolean> {
-    return this.loading$;
   }
 
   async createNewFarm(farm: Farm) {
@@ -67,7 +68,18 @@ export class FarmsService implements OnDestroy {
       delete farm.image; // we don;t need image file on fire store
       await addDoc(this.farmsCollection, farm);
     } catch (error) {
-      console.log('An error happen while creating new farm: ', JSON.stringify(error));
+      console.error('An error happen while creating new farm: ', JSON.stringify(error));
+    } finally {
+      this.loading$.next(false);
+    }
+  }
+
+  async deleteFarm(id: string): Promise<void> {
+    try {
+      this.loading$.next(true);
+      await deleteDoc(doc(this._firestore, this.FARMS_COLLECTION, id));
+    } catch (error) {
+      console.error('An error happen while deleting a farm: ', JSON.stringify(error));
     } finally {
       this.loading$.next(false);
     }

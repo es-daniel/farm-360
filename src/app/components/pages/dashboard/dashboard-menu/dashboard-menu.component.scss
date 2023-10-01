@@ -6,7 +6,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1.5rem;
 
-  @include medium-devices {
+  @include small-devices {
      grid-template-columns: repeat(3, 1fr);
   }
 

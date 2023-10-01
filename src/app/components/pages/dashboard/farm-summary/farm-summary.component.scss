@@ -13,7 +13,7 @@ $items-margin: 1rem;
     }
   }
 
-  @include medium-devices {
+  @include small-devices {
     flex-direction: row;
     flex-wrap: wrap;
 

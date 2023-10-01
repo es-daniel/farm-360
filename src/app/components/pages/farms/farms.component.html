@@ -4,7 +4,12 @@
       <mat-card class="farm-card" *ngFor="let farm of farms">
         <mat-card-header class="farm-card__header">
           <h3 mat-card-title class="farm-card__title">{{ farm.name }}</h3>
-          <button (click)="openFarmOptions(farm)" class="farm-card__options-button" mat-icon-button aria-label="Botón de opciones">
+          <button
+            *ngIf="farm.id"
+            (click)="openFarmOptions(farm.id)"
+            class="farm-card__options-button"
+            mat-icon-button
+            aria-label="Botón de opciones">
             <mat-icon>more_vert</mat-icon>
           </button>
         </mat-card-header>

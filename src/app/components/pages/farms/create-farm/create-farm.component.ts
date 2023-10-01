@@ -22,7 +22,7 @@ export class CreateFarmComponent {
   async saveNewFarm(farm: Farm) {
     await this._farmsService.createNewFarm(farm);
 
-    this._snackBar.open('Finca creada');
+    this._snackBar.open('Finca creada', '', { duration: 1000 });
     this._router.navigateByUrl('/farms');
   }
 }

@@ -1,5 +1,5 @@
-@import 'variables';
-@import 'mixins';
+@use 'variables' as variables;
+@use 'mixins' as mixins;
 
 $main-top-bottom-padding: 2rem;
 $main-left-right-padding: 1rem;
@@ -10,7 +10,7 @@ $main-left-right-padding: 1rem;
 
 .sidenav {
   width: 12.5rem;
-  background-color: $primary-800;
+  background-color: variables.$primary;
   color: white;
 }
 
@@ -34,22 +34,22 @@ $main-left-right-padding: 1rem;
   }
 
   .router-link-active {
-    background-color: $primary-900;
+    background-color: variables.$primary-900;
   }
 }
 
 .mat-sidenav-content {
-  background-color: $primary-50;
+  background-color: variables.$primary-50;
 }
 
 main {
   display: flex;
   flex-direction: column;
   padding: $main-top-bottom-padding $main-left-right-padding;
-  min-height: calc(100% - $small-device-toolbar-height - (2 * $main-top-bottom-padding));
+  min-height: calc(100% - variables.$small-device-toolbar-height - (2 * $main-top-bottom-padding));
 
-  @include medium-devices {
-    min-height: calc(100% - $medium-device-toolbar-height - (2 * $main-top-bottom-padding));
+  @include mixins.medium-devices {
+    min-height: calc(100% - variables.$medium-device-toolbar-height - (2 * $main-top-bottom-padding));
   }
 }
 
@@ -61,7 +61,7 @@ main {
   height: 2.5rem;
   width: 7.5rem;
 
-  @include medium-devices {
+  @include mixins.medium-devices {
     width: 10rem;
   }
 }

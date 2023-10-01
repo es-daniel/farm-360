@@ -1,20 +1,20 @@
-@import 'variables';
+@use 'variables' as variables;
 
 // Breakpoints
 @mixin small-devices {
-  @media (min-width: $small-device-bp) {
+  @media (min-width: variables.$small-device-bp) {
     @content;
   }
 }
 
 @mixin medium-devices {
-  @media (min-width: $medium-device-bp) {
+  @media (min-width: variables.$medium-device-bp) {
     @content;
   }
 }
 
 @mixin large-devices {
-  @media (min-width: $large-device-bp) {
+  @media (min-width: variables.$large-device-bp) {
     @content;
   }
 }
@@ -33,6 +33,6 @@
   transform: translate(-50%, -50%);
 
   @include medium-devices {
-    transform: translate(calc(-50% + 100px), -50%);
+    transform: translate(calc(-50% + (variables.$side-nav-width / 2)), -50%);
   }
 }
