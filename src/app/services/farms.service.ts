@@ -15,7 +15,7 @@ import {
   deleteDoc,
 } from '@angular/fire/firestore';
 import { FileUploadService } from '@services/file-upload.service';
-import { Observable, ReplaySubject, Subject, from, map } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, from, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +30,7 @@ export class FarmsService implements OnDestroy {
 
   private loading$: Subject<boolean> = new Subject();
   private farmsList$: Subject<Farm[]> = new ReplaySubject<Farm[]>();
+  private selectedFarm$: BehaviorSubject<Farm | null> = new BehaviorSubject<Farm | null>(null);
 
   constructor() {
     this.unsubscribeFarmsSnapshot = onSnapshot(this.farmsCollection, (farmsSnapshot: QuerySnapshot<DocumentData>) => {
@@ -41,21 +42,29 @@ export class FarmsService implements OnDestroy {
     this.unsubscribeFarmsSnapshot();
   }
 
-  isLoading(): Observable<boolean> {
+  public isLoading(): Observable<boolean> {
     return this.loading$;
   }
 
-  getFarms(): Observable<Farm[]> {
+  public setSelectedFarm(farm: Farm): void {
+    this.selectedFarm$.next(farm);
+  }
+
+  public getSelectedFarm(): Observable<Farm | null> {
+    return this.selectedFarm$.asObservable();
+  }
+
+  public getFarms(): Observable<Farm[]> {
     return this.farmsList$;
   }
 
-  getFarm(id: string): Observable<Farm> {
+  public getFarm(id: string): Observable<Farm> {
     return from(getDoc(doc(this._firestore, this.FARMS_COLLECTION, id))).pipe(
       map(docSnapshot => ({ id: docSnapshot.id, ...docSnapshot.data() }) as Farm)
     );
   }
 
-  async createNewFarm(farm: Farm) {
+  public async createNewFarm(farm: Farm) {
     this.loading$.next(true);
 
     try {
@@ -74,10 +83,19 @@ export class FarmsService implements OnDestroy {
     }
   }
 
-  async deleteFarm(id: string): Promise<void> {
+  public async deleteSelectedFarm(): Promise<void> {
     try {
-      this.loading$.next(true);
-      await deleteDoc(doc(this._firestore, this.FARMS_COLLECTION, id));
+      const currentFarm = this.selectedFarm$.getValue();
+
+      if (!currentFarm) {
+        return;
+      }
+
+      if (currentFarm.id) {
+        this.loading$.next(true);
+        await deleteDoc(doc(this._firestore, this.FARMS_COLLECTION, currentFarm.id));
+        if (currentFarm.imagePath) this._fileUploadService.deleteFileFromStorage(currentFarm.imagePath);
+      }
     } catch (error) {
       console.error('An error happen while deleting a farm: ', JSON.stringify(error));
     } finally {

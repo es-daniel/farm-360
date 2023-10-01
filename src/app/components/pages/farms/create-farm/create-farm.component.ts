@@ -1,4 +1,3 @@
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FarmFormComponent } from '../farm-form/farm-form.component';
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-farm',
   standalone: true,
-  imports: [CommonModule, FarmFormComponent, AngularFireDatabaseModule, MatSnackBarModule],
+  imports: [CommonModule, FarmFormComponent, MatSnackBarModule],
   templateUrl: './create-farm.component.html',
   styleUrls: ['./create-farm.component.scss'],
 })

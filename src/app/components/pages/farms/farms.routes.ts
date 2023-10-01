@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { FarmsComponent } from './farms.component';
+import { FarmsComponent } from '@components/pages/farms/farms.component';
 
 export const FarmsRoutes: Routes = [
   {

@@ -4,11 +4,17 @@ import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '@components/shared/confirmation-dialog/confirmation-dialog.component';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { FarmsService } from '@services/farms.service';
+import Farm from '@interfaces/farm';
+
+enum FARM_OPTION {
+  DELETE,
+  VIEW_COWS,
+}
 
 @Component({
   selector: 'app-farm-options',
@@ -22,10 +28,22 @@ export class FarmOptionsComponent {
   private readonly _farmOptionsRef = inject(MatBottomSheetRef<FarmOptionsComponent>);
   private readonly _farmsService = inject(FarmsService);
 
-  public farmId: string = inject(MAT_BOTTOM_SHEET_DATA);
-  public isDeletingFarm = false;
+  public FARM_OPTION = FARM_OPTION;
+  public farm$: Observable<Farm | null> = this._farmsService.getSelectedFarm();
+  public isLoading$: Observable<boolean> = this._farmsService.isLoading();
 
-  selectDeleteFarm(): void {
+  public selectOption(optionSelected: FARM_OPTION): void {
+    switch (optionSelected) {
+      case FARM_OPTION.DELETE:
+        this.deleteFarm();
+        break;
+      default:
+        console.warn('Opción desconocida');
+        break;
+    }
+  }
+
+  private async deleteFarm(): Promise<void> {
     this._dialog
       .open(ConfirmationDialogComponent, {
         data: { title: 'Eliminar finca', question: '¿Seguro que deseas eliminar la finca selecciona?' },
@@ -35,14 +53,10 @@ export class FarmOptionsComponent {
       .afterClosed()
       .pipe(take(1))
       .subscribe(async (confirmed: boolean) => {
-        if (confirmed) await this.deleteFarm();
+        if (confirmed) {
+          await this._farmsService.deleteSelectedFarm();
+          this._farmOptionsRef.dismiss();
+        }
       });
-  }
-
-  private async deleteFarm(): Promise<void> {
-    this.isDeletingFarm = true;
-    await this._farmsService.deleteFarm(this.farmId);
-    this.isDeletingFarm = false;
-    this._farmOptionsRef.dismiss();
   }
 }

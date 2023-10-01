@@ -39,7 +39,8 @@ export class FarmsComponent {
   public farms$: Observable<Farm[]> = this._farmsService.getFarms();
   public defaultFarmImage = './assets/icons/barn-1.svg';
 
-  openFarmOptions(farmId: string): void {
-    this._bottomSheet.open(FarmOptionsComponent, { data: farmId, panelClass: 'custom-bottom-sheet' });
+  openFarmOptions(farm: Farm): void {
+    this._farmsService.setSelectedFarm(farm);
+    this._bottomSheet.open(FarmOptionsComponent, { panelClass: 'custom-bottom-sheet' });
   }
 }
